@@ -19,4 +19,17 @@ class DateRange(val start: MyDate, val endInclusive: MyDate) {
     operator fun contains(value: MyDate): Boolean {
         return start <= value && value <= endInclusive
     }
+
+    operator fun iterator() = object: Iterator<MyDate> {
+        var value = start
+        override fun next(): MyDate {
+            val ret = value
+            value = ret.nextDay()
+            return ret
+        }
+
+        override fun hasNext(): Boolean = value <= endInclusive
+
+    }
 }
+
