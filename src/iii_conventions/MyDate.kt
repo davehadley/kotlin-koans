@@ -1,7 +1,7 @@
 package iii_conventions
 
 data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int) : Comparable<MyDate> {
-    private val days = dayOfMonth + month*12 + year+365
+    internal val days = dayOfMonth + month*12 + year*365
     override fun compareTo(other: MyDate): Int {
         return this.days - other.days
     }
@@ -15,4 +15,8 @@ enum class TimeInterval {
     YEAR
 }
 
-class DateRange(val start: MyDate, val endInclusive: MyDate)
+class DateRange(val start: MyDate, val endInclusive: MyDate) {
+    operator fun contains(value: MyDate): Boolean {
+        return start.days <= value.days && value.days <= endInclusive.days
+    }
+}
