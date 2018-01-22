@@ -8,5 +8,6 @@ fun example7() {
 
 fun Shop.groupCustomersByCity(): Map<City, List<Customer>> {
     // Return a map of the customers living in each city
-    todoCollectionTask()
+    val cities = customers.map{ it.city }.toSet()
+    return cities.map{ it to customers.filter{c->c.city==it} }.toMap()
 }
