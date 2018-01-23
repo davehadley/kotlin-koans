@@ -29,7 +29,7 @@ fun todoTask37(): Nothing = TODO(
     """
 )
 
-fun <K, V> buildMap(f: HashMap<K, V>.()->Unit) : HashMap<K, V> { val m = HashMap<K, V>(); m.f(); return m }
+fun <K, V> buildMap(f: MutableMap<K, V>.()->Unit) : HashMap<K, V> { val m = HashMap<K, V>(); m.f(); return m }
 
 fun task37(): Map<Int, String> {
     return buildMap {
